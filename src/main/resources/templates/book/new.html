@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{home.html}" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Person</title>
+</head>
+<body>
+<div layout:fragment="site_content">
+    <div class="row mt-5">
+        <div class="col-6 offset-2">
+            <form th:method="POST" th:action="@{/books}" th:object="${book}">
+                <div class="form-group">
+                    <label for="title">Введите название книги:</label>
+                    <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Enter Name of book">
+                    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</div>
+                    <small id="emailHelp" class="form-text text-muted">Пожалуйста введите корректный данные</small>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <label for="author">Введите автора: </label>
+                    <input type="text" th:field="*{author}" class="form-control" id="author" placeholder="Author">
+                    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">year_of_birth Error</div>
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label for="year">Введите год: </label>
+                    <input type="text" th:field="*{year}" class="form-control" id="year" placeholder="Year">
+                    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year_of_birth Error</div>
+                </div>
+
+                <br>
+                <input class="btn btn-success" type="submit" value="Создать!">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!--<form th:method="POST" th:action="@{/books}" th:object="${book}">-->
+<!--    <label for="title">Введите название книги: </label>-->
+<!--    <input type="text" th:field="*{title}" id="title"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>-->
+<!--    <br/>-->
+<!--    <label for="author">Введите автора: </label>-->
+<!--    <input type="text" th:field="*{author}" id="author"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</div>-->
+<!--    <br/>-->
+<!--    <label for="year">Введите год: </label>-->
+<!--    <input type="text" th:field="*{year}" id="year"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year Error</div>-->
+<!--    <br/>-->
+<!--    <input type="submit" value="Создать!"/>-->
+<!--</form>-->
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{home.html}" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Person</title>
+</head>
+<body>
+
+<div layout:fragment="site_content">
+    <div class="row mt-5">
+        <div class="col-6 offset-2">
+            <form th:method="POST"  th:action="@{/people}" th:object="${person}">
+                <div class="form-group">
+                    <label for="name">Введите ФИО</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter Name">
+                    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                    <small id="emailHelp" class="form-text text-muted">Пожалуйста введите корректный данные</small>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="year_of_birth">Введите год рождения</label>
+                    <input type="text" th:field="*{year_of_birth}" class="form-control" id="year_of_birth" placeholder="ФИО">
+                    <div style="color:red" th:if="${#fields.hasErrors('year_of_birth')}" th:errors="*{year_of_birth}">year_of_birth Error</div>
+                </div>
+                <br>
+                <input class="btn btn-success" type="submit" value="Create!">
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--<form th:method="POST"  th:action="@{/people}" th:object="${person}">-->
+<!--    <label for="name">Введите ФИО</label>-->
+<!--    <input type="text" th:field="*{name}" id="name"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <label for="year_of_birth">Введите год рождения</label>-->
+<!--    <input type="text" th:field="*{year_of_birth}" id="year_of_birth">-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('year_of_birth')}" th:errors="*{year_of_birth}">year_of_birth Error</div>-->
+<!--    <br>-->
+<!--    <input type="submit"value="Create!">-->
+<!--</form>-->
+
+</body>
+</html>
