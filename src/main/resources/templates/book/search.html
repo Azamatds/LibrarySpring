@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{home.html}" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/static/gen.css}">
+  <title>Books Title</title>
+</head>
+<body>
+<div layout:fragment="site_content">
+
+  <div class="row mt-5">
+    <div class="col-6 offset-2">
+      <form th:action="@{/books/search}" th:method="POST">
+        <div class="form-group">
+          <label for="query">Введите поисковой запрос: </label>
+          <input type="text" class="form-control" id="query" aria-describedby="emailHelp" name="query" placeholder="Enter Book Name">
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Искать!</button>
+      </form>
+
+      <div class="col-6 mt-3">
+        <div th:if="${books}">
+          <div th:if="${books.isEmpty()}">
+            <span>Книг не найдено</span>
+            <h3><span class="badge badge-secondary">Книг не найдено</span></h3>
+          </div>
+
+          <div th:each="book :${books}">
+            <p th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</p>
+
+            <div th:if="${book.getOwner()!=null}">
+              <span>Книга сейчас у: </span> <span th:text="${book.getOwner().getName()}">Person Name</span>
+            </div>
+
+            <div th:if="${book.getOwner()==null}">
+              <span>Книга свободно</span>
+            </div>
+
+            <hr/>
+
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<!--<form th:action="@{/books/search}" th:method="POST">-->
+<!--  <label for="query">Введите поисковой запрос: </label>-->
+<!--  <input type="text" id="query" name="query"/>-->
+<!--  <br/>-->
+<!--  <input type="submit" value="Искать!"/>-->
+<!--</form>-->
+
+
+</body>
+</html>
